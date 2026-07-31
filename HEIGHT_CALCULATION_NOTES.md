@@ -13,8 +13,13 @@ This file documents how the QR Height tool derives its numbers. All logic lives 
    - `heightDelta` (final - base)
 
 ## Formula details
-Constants (dual coefficient sets, chosen by `heightMod` sign):
-```
+Constants:
+
+- `ratioCoefficients` is the 3D-to-2D conversion coefficient set used for non-negative `heightMod` values.
+- `ratioCoefficients2` is the 3D-to-2D conversion coefficient set used for negative `heightMod` values.
+- The shorter side uses a separate fitted set because the projection curve is different there.
+
+```txt
 ratioCoefficients (heightMod >= 0)
    A = 1.095388425
    B = 0.004983453
