@@ -1,7 +1,7 @@
 const translations = {
     'zh-Hant': {
         measurement_notice_title: "測量須知與範圍說明",
-        measurement_notice_body: "1. 本工具會依照 QR 內的 <code>scale</code> 與 <code>height</code> 原始值，套用目前通用的比例模型來推算身高。<br>2. 所有運算都只在瀏覽器內完成，不會上傳 QR 內容到伺服器。<br>3. 顯示的最高與最低身高，代表在相同 <code>scale</code> 下把 <code>heightMod</code> 取到 +2 與 -2 時的推算結果。",
+        measurement_notice_body: "1. 本工具會依照 QR 內的 <code>scale</code> 與 <code>height</code> 原始值，套用目前通用的比例模型來推算身高。<br>2. 所有運算都只在瀏覽器內完成，不會上傳 QR 內容到伺服器。<br>3. 顯示的最高與最低身高，代表在相同 <code>scale</code> 下把 <code>height</code> 分別設為 +2 與 -2 時的推算結果。",
         title: "光遇身高查看工具",
         toggle_instructions: "點此展開/收合使用教學",
         inst_1: "1. 在遊戲中，前往 <b>設定 > 帳號 > 帳號資訊 > 造型 QR code</b>。",
@@ -83,7 +83,7 @@ const translations = {
     },
     'vi': {
         measurement_notice_title: "Lưu ý đo chiều cao và phạm vi",
-        measurement_notice_body: "1. Công cụ này đọc hai giá trị gốc <code>scale</code> và <code>height</code> trong QR, rồi áp dụng mô hình tỷ lệ chung đang được cộng đồng sử dụng để suy ra chiều cao.<br>2. Mọi phép tính chỉ diễn ra trong trình duyệt, không tải dữ liệu QR lên máy chủ.<br>3. Chiều cao cao nhất và thấp nhất là kết quả suy ra khi giữ nguyên <code>scale</code> nhưng đặt <code>heightMod</code> lần lượt là +2 và -2.",
+        measurement_notice_body: "1. Công cụ này đọc hai giá trị gốc <code>scale</code> và <code>height</code> trong QR, rồi áp dụng mô hình tỷ lệ chung đang được cộng đồng sử dụng để suy ra chiều cao.<br>2. Mọi phép tính chỉ diễn ra trong trình duyệt, không tải dữ liệu QR lên máy chủ.<br>3. Chiều cao cao nhất và thấp nhất là kết quả suy ra khi giữ nguyên <code>scale</code> nhưng đặt <code>height</code> lần lượt là +2 và -2.",
         title: "Công cụ đo chiều cao Sky",
         toggle_instructions: "Bấm để mở/thu gọn hướng dẫn",
         inst_1: "1. Trong game, vào <b>Cài đặt > Tài khoản > Thông tin tài khoản > Outfit QR Code</b>.",
@@ -165,7 +165,7 @@ const translations = {
     },
     'en': {
         measurement_notice_title: "Measurement Notice & Range",
-        measurement_notice_body: "1. This tool reads the QR payload's <code>scale</code> and <code>height</code> values and applies the shared ratio model now used by the community.<br>2. All calculations stay in your browser, and no QR data is uploaded to a server.<br>3. Tallest and shortest show the projected result when the same <code>scale</code> is paired with <code>heightMod</code> of +2 and -2.",
+        measurement_notice_body: "1. This tool reads the QR payload's <code>scale</code> and <code>height</code> values and applies the shared ratio model now used by the community.<br>2. All calculations stay in your browser, and no QR data is uploaded to a server.<br>3. Tallest and shortest show the projected result when the same <code>scale</code> is paired with <code>height</code> of +2 and -2.",
         title: "Sky Height Tool",
         toggle_instructions: "Click to Expand/Collapse Instructions",
         inst_1: "1. In the game, go to <b>Settings > Account > Account Info > Outfit QR Code</b>.",
@@ -246,7 +246,7 @@ const translations = {
     },
     'ja': {
         measurement_notice_title: "測定に関する注意事項と範囲",
-        measurement_notice_body: "1. このツールは QR 内の <code>scale</code> と <code>height</code> の値を読み取り、現在広く使われている共通の比率モデルで身長を推定します。<br>2. すべての計算はブラウザ内だけで行われ、QR データはサーバーへ送信されません。<br>3. 最高身長と最低身長は、同じ <code>scale</code> に対して <code>heightMod</code> を +2 と -2 にした場合の推定結果です。",
+        measurement_notice_body: "1. このツールは QR 内の <code>scale</code> と <code>height</code> の値を読み取り、現在広く使われている共通の比率モデルで身長を推定します。<br>2. すべての計算はブラウザ内だけで行われ、QR データはサーバーへ送信されません。<br>3. 最高身長と最低身長は、同じ <code>scale</code> に対して <code>height</code> を +2 と -2 にした場合の推定結果です。",
         title: "Sky 身長測定ツール",
         toggle_instructions: "使い方を開く/閉じる",
         inst_1: "1. ゲーム内で<b>設定 > アカウント > アカウント情報 > アバターQRコード</b>の順に進みます。",
