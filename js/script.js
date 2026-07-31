@@ -205,9 +205,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const visualScale = Math.max(0.48, Math.min(result.factor * 0.7, 1.2));
         dom.comparisonSkyKid.style.transform = `scale(${visualScale})`;
-        dom.comparisonFactor.textContent = `${result.factor.toFixed(3)}x`;
-        dom.comparisonBaseHeight.textContent = `${result.baseHeight.toFixed(3)} m`;
-        dom.comparisonSizeType.textContent = `${result.sizeType}`;
+        dom.comparisonFactor.textContent = `${result.currentSizeType}`;
+        dom.comparisonBaseHeight.textContent = `${result.tallestSizeType}`;
+        dom.comparisonSizeType.textContent = `${result.shortestSizeType}`;
         dom.comparisonCard.style.display = 'block';
     }
 
