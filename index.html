@@ -19,6 +19,7 @@
                     </svg>
                 </button>
                 <div id="lang-menu-header" class="lang-menu" style="display: none;">
+                    <button type="button" class="lang-option" data-lang="vi">Tiếng Việt</button>
                     <button type="button" class="lang-option" data-lang="en">English</button>
                     <button type="button" class="lang-option active" data-lang="zh-Hant">繁體中文</button>
                     <button type="button" class="lang-option" data-lang="ja">日本語</button>
@@ -87,6 +88,39 @@
             <div class="result-item">
                 <span class="label" data-lang-key="res_shortest">...</span>
                 <span class="value" id="res-shortest">...</span>
+            </div>
+
+            <div id="comparison-card" class="comparison-card" style="display: none;">
+                <div class="comparison-card__header">
+                    <h3 data-lang-key="comparison_title">...</h3>
+                    <p data-lang-key="comparison_desc">...</p>
+                </div>
+                <div class="comparison-stage">
+                    <div class="comparison-figure comparison-figure--skykid">
+                        <div class="comparison-figure__frame">
+                            <img id="comparison-skykid" src="images/skyKidRaw.png" alt="Sky Kid raw">
+                        </div>
+                    </div>
+                    <div class="comparison-figure comparison-figure--lamp">
+                        <div class="comparison-figure__frame">
+                            <img src="images/lampRaw.png" alt="Ancestor lamp raw">
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-meta">
+                    <div class="comparison-meta__item">
+                        <span data-lang-key="comparison_factor">...</span>
+                        <strong id="comparison-factor">...</strong>
+                    </div>
+                    <div class="comparison-meta__item">
+                        <span data-lang-key="comparison_base_height">...</span>
+                        <strong id="comparison-base-height">...</strong>
+                    </div>
+                    <div class="comparison-meta__item">
+                        <span data-lang-key="comparison_size_type">...</span>
+                        <strong id="comparison-size-type">...</strong>
+                    </div>
+                </div>
             </div>
 
             <div class="result-item json-output">
@@ -183,6 +217,10 @@
                 </div>
             </div>
             <div class="result-item">
+                <span class="label" data-lang-key="sim_size_type_label">...</span>
+                <span class="value" id="potion-size-type">...</span>
+            </div>
+            <div class="result-item">
                 <span class="label" data-lang-key="sim_count_label">...</span>
                 <span class="value" id="potion-count">0</span>
             </div>
@@ -196,6 +234,7 @@
             <a href="https://discord.gg/WfevubxfR7" target="_blank" rel="noopener noreferrer" data-lang-key="report_issue_link">...</a>
             <span class="footer-separator">|</span>
             <div id="lang-switcher" class="footer-lang-switcher">
+                <button type="button" class="lang-option" data-lang="vi">Tiếng Việt</button>
                 <button type="button" class="lang-option" data-lang="en">English</button>
                 <button type="button" class="lang-option active" data-lang="zh-Hant">繁體中文</button>
                 <button type="button" class="lang-option" data-lang="ja">日本語</button>
@@ -204,6 +243,13 @@
         <div class="footer-disclaimers">
             <p data-lang-key="disclaimer_free">...</p>
             <p data-lang-key="disclaimer_privacy">...</p>
+            <p class="footer-credit">
+                Credit by
+                <a href="https://github.com/dream10325" target="_blank" rel="noopener noreferrer">dream10325</a>
+                |
+                Contributer by
+                <a href="https://github.com/HerokeyVN" target="_blank" rel="noopener noreferrer">HerokeyVN</a>
+            </p>
         </div>
     </footer>
 

@@ -8,6 +8,8 @@ All calculations are done in your browser. No data is uploaded, so you can use i
 
 [**➡️ 點此前往網頁 (Click here to visit the web tool)**](https://dream10325.github.io/sky-cotl-height-tool/)
 
+Calculation notes: [HEIGHT_CALCULATION_NOTES.md](./HEIGHT_CALCULATION_NOTES.md)
+
 ---
 
 ## 如何使用

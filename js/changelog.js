@@ -1,5 +1,31 @@
 const versionData = [
     {
+        ver: "v3.0",
+        date: "2026.07.31",
+        changes: {
+            "zh-Hant": [
+                "改用新版通用身高換算公式",
+                "新增 Lamp 與 Sky Kid raw 的比例對照預覽",
+                "新增越南語介面與頁尾製作名單"
+            ],
+            "vi": [
+                "Chuyển sang công thức quy đổi chiều cao chuẩn mới",
+                "Thêm phần xem nhanh tỷ lệ bằng Lamp và Sky Kid raw",
+                "Thêm giao diện tiếng Việt và credit ở footer"
+            ],
+            "en": [
+                "Switched to the updated shared height conversion formula",
+                "Added a visual comparison preview using Lamp and Sky Kid raw",
+                "Added Vietnamese UI support and footer credits"
+            ],
+            "ja": [
+                "共通の新しい身長換算式に更新",
+                "Lamp と Sky Kid raw を使った比率比較プレビューを追加",
+                "ベトナム語UIとフッタークレジットを追加"
+            ]
+        }
+    },
+    {
         ver: "v2.1",
         date: "2026.06.09",
         changes: {

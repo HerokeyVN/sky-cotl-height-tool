@@ -394,3 +394,14 @@ button.secondary-btn:hover, button.secondary-btn:active {
     line-height: 1.6;
     margin-top: 5px;
 }
+
+.footer-credit {
+    margin-top: 10px;
+}
+
+.footer-credit a {
+    font-size: 1em;
+    font-weight: 700;
+    opacity: 0.9;
+    padding: 0 2px;
+}

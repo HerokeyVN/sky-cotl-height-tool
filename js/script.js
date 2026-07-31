@@ -78,7 +78,7 @@ function animateValue(element, start, end, duration) {
     const step = (timestamp) => {
         if (!startTimestamp) startTimestamp = timestamp;
         const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        element.textContent = (progress * (end - start) + start).toFixed(4);
+        element.textContent = `${(progress * (end - start) + start).toFixed(3)} m`;
         if (progress < 1) {
             window.requestAnimationFrame(step);
         }
@@ -95,6 +95,11 @@ document.addEventListener('DOMContentLoaded', () => {
         resShortest: document.getElementById('res-shortest'),
         resJson: document.getElementById('res-json'),
         statusEl: document.getElementById('status'),
+        comparisonCard: document.getElementById('comparison-card'),
+        comparisonSkyKid: document.getElementById('comparison-skykid'),
+        comparisonFactor: document.getElementById('comparison-factor'),
+        comparisonBaseHeight: document.getElementById('comparison-base-height'),
+        comparisonSizeType: document.getElementById('comparison-size-type'),
         copyBtn: document.getElementById('copy-btn'),
         imageBtn: document.getElementById('image-btn'),
         resultActions: document.getElementById('result-actions'),
@@ -122,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
         drinkPotionBtn: document.getElementById('drink-potion-btn'),
         resetSimBtn: document.getElementById('reset-sim-btn'),
         potionResult: document.getElementById('potion-result'),
+        potionSizeType: document.getElementById('potion-size-type'),
         potionCount: document.getElementById('potion-count'),
         potionExtremeNotice: document.getElementById('potion-extreme-notice'),
         qrUploadArea: document.getElementById('qr-upload-area'),
@@ -145,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderHistory() {
         dom.historyList.innerHTML = '';
         history.forEach((item, index) => {
-            const currentHeightDisplay = item.current ? item.current.toFixed(4) : 'N/A';
+            const currentHeightDisplay = Number.isFinite(item.current) ? `${item.current.toFixed(3)} m` : 'N/A';
             const li = document.createElement('li');
             const date = new Date(item.timestamp).toLocaleString();
             li.innerHTML = `
@@ -189,6 +195,20 @@ document.addEventListener('DOMContentLoaded', () => {
             gradEl.dataset.colors = grad.colors.join(',');
             dom.gradientSelector.appendChild(gradEl);
         });
+    }
+
+    function renderComparison(result) {
+        if (!result || !dom.comparisonCard) {
+            if (dom.comparisonCard) dom.comparisonCard.style.display = 'none';
+            return;
+        }
+
+        const visualScale = Math.max(0.48, Math.min(result.factor * 0.7, 1.2));
+        dom.comparisonSkyKid.style.transform = `scale(${visualScale})`;
+        dom.comparisonFactor.textContent = `${result.factor.toFixed(3)}x`;
+        dom.comparisonBaseHeight.textContent = `${result.baseHeight.toFixed(3)} m`;
+        dom.comparisonSizeType.textContent = `${result.sizeType}`;
+        dom.comparisonCard.style.display = 'block';
     }
 
     const drawCanvasContent = (ctx, canvas) => {
@@ -380,13 +400,14 @@ document.addEventListener('DOMContentLoaded', () => {
     dom.playerNameInput.addEventListener('input', updatePreview);
     dom.showRangeToggle.addEventListener('change', updatePreview);
 
-    dom.calculateBtn.addEventListener('click', () => {
-        dom.resCurrent.textContent = '...'; 
-        dom.resTallest.textContent = '...'; 
+        dom.calculateBtn.addEventListener('click', () => {
+        dom.resCurrent.textContent = '...';
+        dom.resTallest.textContent = '...';
         dom.resShortest.textContent = '...';
         if (dom.resJson) dom.resJson.textContent = '';
         dom.resultActions.style.display = 'none';
         lastResult = null;
+        renderComparison(null);
         dom.statusEl.innerHTML = t('status_calculating'); 
         dom.statusEl.className = '';
         
@@ -403,6 +424,7 @@ document.addEventListener('DOMContentLoaded', () => {
             dom.statusEl.innerHTML = t(results.error); 
             dom.statusEl.className = 'status-error';
             dom.simulatorContainer.style.display = 'none';
+            renderComparison(null);
         } else {
             lastResult = results;
             animateValue(dom.resCurrent, parseFloat(dom.resCurrent.textContent) || 0, results.current, 500);
@@ -419,6 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
             dom.statusEl.innerHTML = t('status_success'); 
             dom.statusEl.className = 'status-success';
             dom.resultActions.style.display = 'block';
+            renderComparison(results);
 
             lastCalculatedScale = results.scale;
             dom.simulatorContainer.style.display = 'block';
@@ -442,7 +465,7 @@ document.addEventListener('DOMContentLoaded', () => {
             dom.statusEl.className = 'status-error';
             return;
         }
-        const copyText = `${t('res_current')} ${lastResult.current.toFixed(4)}\n${t('res_tallest')} ${lastResult.tallest.toFixed(4)}\n${t('res_shortest')} ${lastResult.shortest.toFixed(4)}`;
+        const copyText = `${t('res_current')} ${lastResult.current.toFixed(3)} m\n${t('res_tallest')} ${lastResult.tallest.toFixed(3)} m\n${t('res_shortest')} ${lastResult.shortest.toFixed(3)} m`;
         navigator.clipboard.writeText(copyText).then(() => {
             dom.statusEl.innerHTML = t('status_copy_success'); 
             dom.statusEl.className = 'status-success';
@@ -503,17 +526,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    dom.drinkPotionBtn.addEventListener('click', () => {
+        dom.drinkPotionBtn.addEventListener('click', () => {
         if (lastCalculatedScale === null) {
             alert(t('sim_error_no_calc'));
             return;
         }
         dom.potionExtremeNotice.textContent = '';
         const newRandomHeight = Math.random() * 4.0 - 2.0;
-        const newHeightNumber = 7.6 - (8.3 * lastCalculatedScale) - (3 * newRandomHeight);
+        const snapshot = computeHeightSnapshot(lastCalculatedScale, newRandomHeight);
+        const newHeightNumber = snapshot.height;
 
         const currentResult = parseFloat(dom.potionResult.textContent) || newHeightNumber;
         animateValue(dom.potionResult, currentResult, newHeightNumber, 300);
+        dom.potionSizeType.textContent = `${snapshot.sizeType}`;
         if (newRandomHeight >= 1.96) {
             dom.potionExtremeNotice.textContent = t('sim_extreme_tall');
         } else if (newRandomHeight <= -1.96) {
@@ -527,6 +552,7 @@ document.addEventListener('DOMContentLoaded', () => {
     dom.resetSimBtn.addEventListener('click', () => {
         potionCounter = 0;
         dom.potionResult.textContent = '...';
+        dom.potionSizeType.textContent = '...';
         dom.potionCount.textContent = '0';
         dom.potionExtremeNotice.textContent = '';
     });
